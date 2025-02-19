@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts About Cats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .fact-display {
+            font-size: 1.5em;
+            margin: 20px 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .fact-display {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fun Facts About Cats</h1>
+        <div id="factDisplay" class="fact-display">Click the button to see a fun fact!</div>
+        <button id="randomFactButton" class="button">Show Random Fact</button>
+        <a id="twitterShareButton" class="button" href="#" target="_blank">Share on Twitter</a>
+    </div>
+    <script>
+        const funFacts = [
+            {
+                "fact": "Whisker Sensitivity",
+                "description": "Cats have highly sensitive whiskers that can detect changes in their environment. These whiskers help them navigate tight spaces and sense nearby objects."
+            },
+            {
+                "fact": "Purring Mystery",
+                "description": "While cats often purr when they are content, they also purr when they are frightened or in pain. Purring may have a calming effect and can even promote healing."
+            },
+            {
+                "fact": "Unique Nose Prints",
+                "description": "Just like human fingerprints, each cat has a unique nose print. This means that no two cats have the same nose pattern."
+            },
+            {
+                "fact": "Sleepy Creatures",
+                "description": "Cats sleep for about 12 to 16 hours a day, which is roughly two-thirds of their life. This makes them one of the sleepiest animals!"
+            },
+            {
+                "fact": "Communication",
+                "description": "Cats have a unique way of communicating with humans. They often use a specific set of vocalizations that they don’t typically use with other cats."
+            },
+            {
+                "fact": "Ancient Companions",
+                "description": "Cats were domesticated around 9,000 years ago in the Near East. They were valued for their ability to control pests and have been human companions ever since."
+            },
+            {
+                "fact": "Superb Jumpers",
+                "description": "Cats can jump up to six times their body length in one leap. This incredible ability is due to their powerful leg muscles."
+            },
+            {
+                "fact": "Tail Language",
+                "description": "A cat's tail position can indicate its mood. For example, a raised tail often signifies happiness, while a puffed-up tail can indicate fear or aggression."
+            },
+            {
+                "fact": "Grooming Habits",
+                "description": "Cats spend a significant portion of their waking hours grooming themselves. This behavior helps them regulate their body temperature and keep their fur clean."
+            },
+            {
+                "fact": "Night Vision",
+                "description": "Cats have excellent night vision, allowing them to see in light levels six times lower than what a human needs. This adaptation helps them hunt in low-light conditions."
+            }
+        ];
+
+        document.getElementById('randomFactButton').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * funFacts.length);
+            const selectedFact = funFacts[randomIndex];
+            const factDisplay = document.getElementById('factDisplay');
+            
+            factDisplay.style.opacity = 0; // Fade out
+            setTimeout(() => {
+                factDisplay.innerHTML = `<strong>${selectedFact.fact}</strong>: ${selectedFact.description}`;
+                factDisplay.style.opacity = 1; // Fade in
+            }, 500);
+            
+            // Update Twitter share link
+            const twitterShareButton = document.getElementById('twitterShareButton');
+            const tweetText = encodeURIComponent(`${selectedFact.fact}: ${selectedFact.description}`);
+            twitterShareButton.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
+        });
+    </script>
+</body>
+</html>
